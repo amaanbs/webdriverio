@@ -21,6 +21,72 @@ See [CHANGELOG - v7](https://github.com/webdriverio/webdriverio/blob/v7/CHANGELO
 
 ---
 
+## v8.33.1 (2024-03-09)
+
+#### :bug: Bug Fix
+* `wdio-browserstack-service`
+  * [#12454](https://github.com/webdriverio/webdriverio/pull/12454) Fix CBT for hooks and Skipped tests for hook failures ([@sriteja777](https://github.com/sriteja777))
+
+#### :nail_care: Polish
+* `wdio-utils`
+  * [#12439](https://github.com/webdriverio/webdriverio/pull/12439) enable edge for devTools env detector ([@lacell75](https://github.com/lacell75))
+
+#### Committers: 2
+- Fabien CELLIER ([@lacell75](https://github.com/lacell75))
+- Sriteja Sugoor ([@sriteja777](https://github.com/sriteja777))
+
+
+## v8.33.0 (2024-03-07)
+
+#### :rocket: New Feature
+* `wdio-browserstack-service`
+  * [#12392](https://github.com/webdriverio/webdriverio/pull/12392) [browserstack-service] Add Funnel Data instrumentation [v8] ([@sriteja777](https://github.com/sriteja777))
+
+#### :nail_care: Polish
+* `webdriver`
+  * [#12393](https://github.com/webdriverio/webdriverio/pull/12393) (webdriver): fix custom request error message override ([@erwinheitzman](https://github.com/erwinheitzman))
+  * [#12435](https://github.com/webdriverio/webdriverio/pull/12435) (webdriver): improve error stack for failing bidi commands ([@christian-bromann](https://github.com/christian-bromann))
+* `wdio-utils`, `webdriver`, `webdriverio`
+  * [#12432](https://github.com/webdriverio/webdriverio/pull/12432) (feat): enable chromium protocol for edge ([@lacell75](https://github.com/lacell75))
+
+#### Committers: 4
+- Christian Bromann ([@christian-bromann](https://github.com/christian-bromann))
+- Erwin Heitzman ([@erwinheitzman](https://github.com/erwinheitzman))
+- Fabien CELLIER ([@lacell75](https://github.com/lacell75))
+- Sriteja Sugoor ([@sriteja777](https://github.com/sriteja777))
+
+
+## v8.32.4 (2024-03-03)
+
+#### :bug: Bug Fix
+* `wdio-browserstack-service`
+  * [#12368](https://github.com/webdriverio/webdriverio/pull/12368) Browserstack observability reload session fix [v8] ([@sriteja777](https://github.com/sriteja777))
+
+#### :nail_care: Polish
+* `wdio-cli`, `wdio-config`
+  * [#12372](https://github.com/webdriverio/webdriverio/pull/12372) (wdio-config): expand and simplify the --multi-run feature ([@erwinheitzman](https://github.com/erwinheitzman))
+* `webdriverio`
+  * [#12383](https://github.com/webdriverio/webdriverio/pull/12383) [v8] Add ability to click and moveTo outside the given element ([@jemishgopani](https://github.com/jemishgopani))
+* `wdio-allure-reporter`
+  * [#12378](https://github.com/webdriverio/webdriverio/pull/12378) (wdio-allure-reporter): CompoundError: Also print error message if present [v8] ([@torbenkohlmeier](https://github.com/torbenkohlmeier))
+* `wdio-devtools-service`
+  * [#12345](https://github.com/webdriverio/webdriverio/pull/12345) [V8] Add feature to specify os version for the emulated device ([@jemishgopani](https://github.com/jemishgopani))
+
+#### :memo: Documentation
+* `wdio-types`
+  * [#12399](https://github.com/webdriverio/webdriverio/pull/12399) Add resigningEnabled capability to @wdio/types (#12397) [v8] ([@AlexRivero](https://github.com/AlexRivero))
+* Other
+  * [#12332](https://github.com/webdriverio/webdriverio/pull/12332) New font rendering features ([@wswebcreation](https://github.com/wswebcreation))
+
+#### Committers: 6
+- Alex Rivero Ferràs ([@AlexRivero](https://github.com/AlexRivero))
+- Erwin Heitzman ([@erwinheitzman](https://github.com/erwinheitzman))
+- Jemish Gopani ([@jemishgopani](https://github.com/jemishgopani))
+- Sriteja Sugoor ([@sriteja777](https://github.com/sriteja777))
+- Wim Selles ([@wswebcreation](https://github.com/wswebcreation))
+- [@torbenkohlmeier](https://github.com/torbenkohlmeier)
+
+
 ## v8.32.3 (2024-02-21)
 
 #### :bug: Bug Fix

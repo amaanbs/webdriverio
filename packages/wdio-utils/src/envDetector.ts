@@ -1,4 +1,5 @@
 import type { Capabilities } from '@wdio/types'
+import { SUPPORTED_BROWSERNAMES } from './constants.js'
 
 const MOBILE_BROWSER_NAMES = ['ipad', 'iphone', 'android']
 const MOBILE_CAPABILITIES = [
@@ -63,6 +64,21 @@ function isChrome(capabilities?: Capabilities.DesiredCapabilities) {
         return false
     }
     return Boolean(capabilities.chrome || capabilities['goog:chromeOptions'])
+}
+
+/**
+ * check if session is run by Edgedriver
+ * @param  {Object}  capabilities  caps of session response
+ * @return {Boolean}               true if run by Edgedriver
+ */
+function isEdge(capabilities?: Capabilities.DesiredCapabilities) {
+    if (!capabilities) {
+        return false
+    }
+    return (
+        Boolean(capabilities.browserName && SUPPORTED_BROWSERNAMES.edge.includes(capabilities.browserName.toLowerCase()) ||
+          capabilities['ms:edgeOptions'])
+    )
 }
 
 /**
@@ -223,6 +239,18 @@ function isSeleniumStandalone(capabilities?: Capabilities.DesiredCapabilities) {
 }
 
 /**
+ * detects if session is run using Chromium protocol
+ * @param  {object}  capabilities session capabilities
+ * @return {Boolean}              true if session is run with Chromium protocol
+ */
+function isChromium(capabilities?: Capabilities.DesiredCapabilities) {
+    if (!capabilities) {
+        return false
+    }
+    return (isChrome(capabilities) || isEdge(capabilities))
+}
+
+/**
  * returns information about the environment before the session is created
  * @param  {Object}  capabilities           caps provided by user
  * @param  {string=} automationProtocol     `devtools`
@@ -254,7 +282,8 @@ export function sessionEnvironmentDetector({ capabilities, requestedCapabilities
         isAndroid: isAndroid(cap),
         isSauce: isSauce(requestedCapabilities),
         isSeleniumStandalone: isSeleniumStandalone(cap),
-        isBidi: isBidi(capabilities)
+        isBidi: isBidi(capabilities),
+        isChromium: isChromium(cap)
     }
 }
 
@@ -263,7 +292,7 @@ export function sessionEnvironmentDetector({ capabilities, requestedCapabilities
  * @param  {Object}  capabilities           caps of session response
  * @return {Object}                         object with environment flags
  */
-export function devtoolsEnvironmentDetector({ browserName }: WebdriverIO.Capabilities) {
+export function devtoolsEnvironmentDetector(capabilities: WebdriverIO.Capabilities) {
     return {
         isDevTools: true,
         isW3C: true,
@@ -271,10 +300,11 @@ export function devtoolsEnvironmentDetector({ browserName }: WebdriverIO.Capabil
         isIOS: false,
         isAndroid: false,
         isFirefox: false,
-        isChrome: browserName === 'chrome',
+        isChrome: capabilities.browserName === 'chrome',
         isSauce: false,
         isSeleniumStandalone: false,
-        isBidi: false
+        isBidi: false,
+        isChromium: capabilities.browserName === 'chrome' || isChromium(capabilities)
     }
 }
 
@@ -292,6 +322,7 @@ export function webdriverEnvironmentDetector(capabilities: WebdriverIO.Capabilit
         isIOS: isIOS(capabilities),
         isAndroid: isAndroid(capabilities),
         isSauce: isSauce(capabilities),
-        isBidi: isBidi(capabilities)
+        isBidi: isBidi(capabilities),
+        isChromium: isChromium(capabilities)
     }
 }
